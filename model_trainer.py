@@ -1,22 +1,14 @@
 import tensorflow as tf
+import pandas as pd
 
+# Cargar los datos de entrenamiento y prueba
 def obtener_datos_entrenamiento():
-    # Leer los datos de entrenamiento de un archivo CSV
-    datos = pd.read_csv('datos_entrenamiento.csv')
-    
-    # Devolver los datos como un diccionario con dos claves: 'texto' y 'cypher'
-    return {'texto': datos['texto'].tolist(), 'cypher': datos['cypher'].tolist()}
+    datos = pd.read_csv("datos_entrenamiento.csv")
+    train = datos.sample(frac=0.8,random_state=200)
+    test = datos.drop(train.index)
+    return train, test
 
-def obtener_datos_prueba():
-    # Leer los datos de prueba de un archivo CSV
-    datos = pd.read_csv('datos_prueba.csv')
-    
-    # Devolver los datos como un diccionario con dos claves: 'texto' y 'cypher'
-    return {'texto': datos['texto'].tolist(), 'cypher': datos['cypher'].tolist()}
-
-# Obtener los datos de entrenamiento y prueba
-datos_entrenamiento = obtener_datos_entrenamiento()
-datos_prueba = obtener_datos_prueba()
+datos_entrenamiento, datos_prueba = obtener_datos_entrenamiento()
 
 # Preprocesar los datos
 tokenizer = tf.keras.preprocessing.text.Tokenizer()
@@ -43,7 +35,6 @@ model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=
 # Entrenar el modelo
 model.fit(datos_entrenamiento_tokens_padded, datos_entrenamiento['cypher'], epochs=10, validation_data=(datos_prueba_tokens_padded, datos_prueba['cypher']))
 
-# Evaluar el rendimiento del modelo
-metricas = model.evaluate(datos_prueba_tokens_padded, datos_prueba['cypher'])
-print('Precisión:', metricas[1])
+# Guardar el modelo
+model.save('modelo_de_lenguaje_natural.h5')
 
