@@ -1,9 +1,5 @@
 texto,cypher
-"¿Quienes son los actores que aparecen en la pelicula The Shawshank Redemption?","MATCH (p:Person)-[:ACTED_IN]->(m:Movie {title:"The Shawshank Redemption"}) RETURN p.name"
-"¿En que ano se estreno la pelicula Terminator 2: Judgment Day?","MATCH (m:Movie {title:"Terminator 2: Judgment Day"}) RETURN m.released"
-"¿Quien es el director de la pelicula The Dark Knight?","MATCH (d:Person)-[:DIRECTED]->(m:Movie {title:"The Dark Knight"}) RETURN d.name"
-"¿Que peliculas ha dirigido Christopher Nolan?","MATCH (d:Person {name:"Christopher Nolan"})-[:DIRECTED]->(m:Movie) RETURN m.title"
-"¿Quienes son los actores que aparecen en la pelicula Pulp Fiction?","MATCH (p:Person)-[:ACTED_IN]->(m:Movie {title:"Pulp Fiction"}) RETURN p.name"
-"¿En que ano se estreno la pelicula The Lion King?","MATCH (m:Movie {title:"The Lion King"}) RETURN m.released"
-"¿Que peliculas ha protagonizado Tom Cruise?","MATCH (p:Person {name:"Tom Cruise"})-[:ACTED_IN]->(m:Movie) RETURN m.title"
-"¿Cual es la duracion de la pelicula Inception?","MATCH (m:Movie {title:"Inception"}) RETURN m.duration"
+"¿Quienes son los actores de la pelicula Titanic?","MATCH (p:Person)-[:ACTED_IN]->(m:Movie {title:"Titanic"}) RETURN p.name
+"¿Cuantas peliculas ha dirigido Steven Spielberg?","MATCH (d:Person {name:"Steven Spielberg"})-[:DIRECTED]->(m:Movie) RETURN count(m)"
+"¿Quien es el protagonista de la pelicula Matrix?","MATCH (p:Person)-[:ACTED_IN]->(m:Movie {title:"Matrix"})-[:HAS_CHARACTER]->(c:Character {name:"Neo"}) RETURN p.name"
+"¿Cuales son los paises que limitan con Mexico?","MATCH (m:Country {name:"Mexico"})<-[:BORDERS]-(c:Country) RETURN c.name"
