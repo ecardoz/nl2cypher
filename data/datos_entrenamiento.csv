@@ -1,5 +1,4 @@
 texto,cypher
-¿Quienes son los actores de la pelicula Titanic?,"MATCH (p:Person)-[:ACTED_IN]->(m:Movie {title:'Titanic'}) RETURN p.name"
-¿Cuantas peliculas ha dirigido Steven Spielberg?,"MATCH (d:Person {name:'Steven Spielberg'})-[:DIRECTED]->(m:Movie) RETURN count(m)"
-¿Quien es el protagonista de la pelicula Matrix?,"MATCH (p:Person)-[:ACTED_IN]->(m:Movie {title:'Matrix'})-[:HAS_CHARACTER]->(c:Character {name:'Neo'}) RETURN p.name"
-¿Cuales son los paises que limitan con Mexico?,"MATCH (m:Country {name:'Mexico'})<-[:BORDERS]-(c:Country) RETURN c.name"
+"¿Quiénes son los actores en la película ""Titanic""?",MATCH (m:Movie {title:"Titanic"})<-[:ACTED_IN]-(a:Person) RETURN a.name
+"¿Cuántas películas ha dirigido Christopher Nolan?",MATCH (d:Person {name:"Christopher Nolan"})-[:DIRECTED]->(m:Movie) RETURN COUNT(m)
+"¿En qué películas ha actuado Tom Hanks?",MATCH (p:Person {name:"Tom Hanks"})-[:ACTED_IN]->(m:Movie) RETURN m.title
