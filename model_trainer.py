@@ -1,5 +1,6 @@
 import tensorflow as tf
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
 # Cargar los datos de entrenamiento y prueba
 def obtener_datos_entrenamiento():
@@ -9,6 +10,9 @@ def obtener_datos_entrenamiento():
     return train, test
 
 datos_entrenamiento, datos_prueba = obtener_datos_entrenamiento()
+
+le = LabelEncoder()
+datos_entrenamiento["cypher"] = le.fit_transform(datos_entrenamiento["cypher"])
 
 # Preprocesar los datos
 tokenizer = tf.keras.preprocessing.text.Tokenizer()
