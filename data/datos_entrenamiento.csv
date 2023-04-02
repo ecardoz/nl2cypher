@@ -3,7 +3,6 @@ texto,cypher
 "¿Cuantas peliculas ha dirigido Steven Spielberg?","MATCH (d:Person {name:"Steven Spielberg"})-[:DIRECTED]->(m:Movie) RETURN count(m)"
 "¿Quien es el protagonista de la pelicula Matrix?","MATCH (p:Person)-[:ACTED_IN]->(m:Movie {title:"Matrix"})-[:HAS_CHARACTER]->(c:Character {name:"Neo"}) RETURN p.name"
 "¿Cuales son los paises que limitan con Mexico?","MATCH (m:Country {name:"Mexico"})<-[:BORDERS]-(c:Country) RETURN c.name"
-"¿Que peliculas protagonizo Brad Pitt?","MATCH (p:Person {name:"Brad Pitt"})-[:ACTED_IN]->(m:Movie) RETURN m.title"
 "¿Quien es el director de la pelicula The Godfather?","MATCH (d:Person)-[:DIRECTED]->(m:Movie {title:"The Godfather"}) RETURN d.name"
 "¿En que ano se estreno la pelicula El Padrino?","MATCH (m:Movie {title:"El Padrino"}) RETURN m.released"
 "¿Cuales son los actores que aparecen en la pelicula Forrest Gump?","MATCH (p:Person)-[:ACTED_IN]->(m:Movie {title:"Forrest Gump"}) RETURN p.name"
