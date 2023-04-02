@@ -11,8 +11,8 @@ def obtener_datos_entrenamiento():
 
 datos_entrenamiento, datos_prueba = obtener_datos_entrenamiento()
 
-#le = LabelEncoder()
-#datos_entrenamiento["cypher"] = le.fit_transform(datos_entrenamiento["cypher"])
+le = LabelEncoder()
+datos_entrenamiento["cypher"] = le.fit_transform(datos_entrenamiento["cypher"])
 
 # Preprocesar los datos
 tokenizer = tf.keras.preprocessing.text.Tokenizer()
