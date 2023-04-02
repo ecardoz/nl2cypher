@@ -3,7 +3,7 @@ import pandas as pd
 
 # Cargar los datos de entrenamiento y prueba
 def obtener_datos_entrenamiento():
-    datos = pd.read_csv("datos_entrenamiento.csv")
+    datos = pd.read_csv("data/datos_entrenamiento.csv")
     train = datos.sample(frac=0.8,random_state=200)
     test = datos.drop(train.index)
     return train, test
