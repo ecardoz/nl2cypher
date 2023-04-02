@@ -14,6 +14,9 @@ datos_entrenamiento, datos_prueba = obtener_datos_entrenamiento()
 le = LabelEncoder()
 datos_entrenamiento["cypher"] = le.fit_transform(datos_entrenamiento["cypher"])
 
+datos_entrenamiento["cypher"] = tf.keras.utils.to_categorical(datos_entrenamiento["cypher"])
+datos_prueba["cypher"] = tf.keras.utils.to_categorical(datos_prueba["cypher"])
+
 # Preprocesar los datos
 tokenizer = tf.keras.preprocessing.text.Tokenizer()
 tokenizer.fit_on_texts(datos_entrenamiento['texto'])
@@ -34,7 +37,7 @@ model = tf.keras.models.Sequential([
 ])
 
 # Compilar el modelo
-model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['sparse_categorical_accuracy'])
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
 
 # Entrenar el modelo
 model.fit(datos_entrenamiento_tokens_padded, datos_entrenamiento['cypher'], epochs=10, validation_data=(datos_prueba_tokens_padded, datos_prueba['cypher']))
